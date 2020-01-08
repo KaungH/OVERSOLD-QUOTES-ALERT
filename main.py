@@ -2,10 +2,20 @@
 ##USING TWILIO API
 ##LIMITATION 200 requests per every minute per API key
 ##TASKS: SENDS OVERSOLD STOCK LIST TO A PHONE NUMBER
+##PURPOSE: ALLOW USERS TO EXPLORE DIFFERENT KIND OF OVERSOLD STOCKS IN REVERSAL OF STOCK PRICE
 
 #https://github.com/alpacahq/alpaca-trade-api-python/#restget_barsetsymbols-timeframe-limit-startnone-endnone-afternone-untilnone
 
-##
+##Ideas for improvements
+###FINDING BALANCE IN REQUESTS LIMIT & PERFORMACE SPEED
+###DOES NOT REPEAT PREVIOUS SENT STOCK TAGS
+###EQUIP MULTIPLE STOCK TECHNICAL INDICATORS
+###ALERT SUDDEN DROP IN SPECIFIC STOCK
+###CREATING SPREAD SHEET TO KEEP TRACK SMS SENT
+###EXPLOR FOR MORE NUMPY OPTIONS
+###ALERT FOR STOCKS IN SPECIFIC CATEGORIES
+
+
 
 from config import *
 import time,json
@@ -16,8 +26,8 @@ from twilio.rest import Client
 
 
 BASE_URL  = "https://paper-api.alpaca.markets"
-ACC_URL   = "{}/v2/account".format(BASE_URL)
-ORDER_URL = "{}/v2/orders".format(BASE_URL)
+# ACC_URL   = "{}/v2/account".format(BASE_URL)
+# ORDER_URL = "{}/v2/orders".format(BASE_URL)
 ASET_URL  = "{}/v2/assets".format(BASE_URL)
 SMS_URL   = "https://api.twilio.com/2010-04-01"
 
@@ -126,7 +136,7 @@ def send_sms(text):
     sorted(text, key=text.get, reverse=True) ##SORT DICT VALUES
     string = ''
     for key, value in text.items():
-        string+= key+ ": $"+ str(value)+"\n"
+        string+= key+ ": "+ str(value)+"%\n"
          ##CREATE STR WITH VALUES
     client.messages.create(body=string, 
     ##SENDING STR ON SMS
@@ -135,15 +145,11 @@ def send_sms(text):
                  )
     text.clear()
     del string ##RESET THE STRING
+
+
 send_sms(find_stock(ticker))
+##SENDING SMS
 
-# string1 = ''
-# texts ={ "EROS" :3.65,"FB":299,"AMZN":1998 }
-# for key, value in texts.items():
-#      string1+= key+ ": $"+ str(value)+"\n"
-
-
-# print(string1)
 
 
 
