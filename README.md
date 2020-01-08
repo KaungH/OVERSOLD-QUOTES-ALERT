@@ -6,6 +6,8 @@ THE APPLICATION IS SCHEDULED TO RUN THREE TIME A WEEK; USER WILL HAVE EXPOSURE T
 
 THE APPLICATION USES ALPACA REST API AND TWILIO REST API
 
+MUST CREATE OWN API_KEYS file
+
 https://github.com/alpacahq/alpaca-trade-api-python/blob/master/alpaca_trade_api/rest.py
 
 
