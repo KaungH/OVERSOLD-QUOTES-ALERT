@@ -8,6 +8,7 @@ authors = ["Your Name <you@example.com>"]
 python = "^3.7"
 alpaca-trade-api = "^0.42.0"
 requests = "^2.22"
+twilio = "^6.35"
 
 [tool.poetry.dev-dependencies]
 
