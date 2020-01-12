@@ -18,11 +18,18 @@
 
 
 from config import *
+
 import time,json
 import requests
 import numpy as np
 import alpaca_trade_api as tradeapi
 from twilio.rest import Client
+os.getenv('AccountSid')
+os.getenv('AuthToken')
+os.getenv('API_KEY ')
+os.getenv('SECRET_KEY')
+os.getenv('sender_num')
+os.getenv('receiv_num')
 
 
 BASE_URL  = "https://paper-api.alpaca.markets"
@@ -136,7 +143,7 @@ def send_sms(text):
     sorted(text, key=text.get, reverse=True) ##SORT DICT VALUES
     string = ''
     for key, value in text.items():
-        string+= key+ ": "+ str(value)+"%\n"
+        string+= "{}:{}%\n".format(key,str(value))
          ##CREATE STR WITH VALUES
     client.messages.create(body=string, 
     ##SENDING STR ON SMS
